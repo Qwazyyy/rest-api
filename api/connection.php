@@ -1,16 +1,15 @@
 <?php
-    $host = 'localhost:8889';
-    $database = 'api';
-    $user = 'root';
-    $password = 'root';
+    class MySQL
+    {
+        private $host = 'localhost:8889';
+        private $database = 'api';
+        private $user = 'root';
+        private $password = 'root';
 
-    $dsn = "mysql:host=$host; dbname=$database";
-    $connection = new PDO($dsn, $user, $password);
-    if($connection)
-    {
-    }
-    else
-    {
-        echo 'Подключение не удалось';
+        public static function connection()
+        {
+            $connection = new PDO('mysql:host=localhost:8889;dbname=api', 'root', 'root');
+            return $connection;
+        }
     }
 ?>
