@@ -1,22 +1,23 @@
 <?php
     interface FilmRepositoryInterface
     {
-        public static function getByActorAndGenre($data);
+        public static function getByActorGenreAndFilter($parameters);
         public static function getById($id);
         public static function getAll();
-        public static function add($data);
-        public static function edit($data, $id);
+        public static function add($parameters);
+        public static function edit($parameters, $id);
         public static function delete($id);
     }
 
     class FilmRepository implements FilmRepositoryInterface
     {
-        public static function getByActorAndGenre($data)
+        //запрос к базе на вывод фильмов по актеру и жанру
+        public static function getByActorGenreAndFilter($parameters)
         {
-            $genre = $data[1];
-            $actor_first_name = $data[2];
-            $actor_last_name = $data[3];
-            $order_by = $data[4];
+            $genre = $parameters[1];
+            $actor_first_name = $parameters[2];
+            $actor_last_name = $parameters[3];
+            $order_by = $parameters[4];
 
             $connection = MySQL::connection();
             $query = $connection->query(
@@ -35,7 +36,7 @@
                 return false;
             }
         }
-        
+        //запрос к базе на вывод по ID
         public static function getById($id)
         {
             $connection = MySQL::connection();
@@ -50,6 +51,7 @@
                 return false;
             }
         }
+        //запрос к базе на вывод всех фильмов
         public static function getAll()
         {
             $connection = MySQL::connection();
@@ -64,12 +66,12 @@
                 return false;
             }
         }
-
-        public static function add($data)
+        //запрос к базе на добавление
+        public static function add($parameters)
         {
             $connection = MySQL::connection();
-            $name = $data['name'];
-            $genreId = $data['genreId'];
+            $name = $parameters['name'];
+            $genreId = $parameters['genreId'];
             $query = $connection->query(
                 "INSERT INTO `films` (`id`, `name`, `genre_id`) VALUES (NULL, '$name', '$genreId')"
             );
@@ -79,12 +81,12 @@
                 return false;
             }
         }
-
-        public static function edit($data, $id)
+        //запрос к базе на изменение
+        public static function edit($parameters, $id)
         {
             $connection = MySQL::connection();
-            $name = $data['name'];
-            $genreId = $data['genreId'];
+            $name = $parameters['name'];
+            $genreId = $parameters['genreId'];
             $query = $connection->query(
                 "UPDATE `films` SET `name` = '$name', `genre_id` = '$genreId' WHERE `id` = '$id'"
             );
@@ -94,7 +96,7 @@
                 return false;
             }
         }
-
+        //запрос к базе на удаление
         public static function delete($id)
         {
             $connection = MySQL::connection();

@@ -1,9 +1,9 @@
 <?php
     class FilmService
     {
-        public static function getByActorAndGenre($data)
+        public static function getByActorGenreAndFilter($data)
         {
-            $result = FilmRepository::getByActorAndGenre($data);
+            $result = FilmRepository::getByActorGenreAndFilter($data);
             if($result) {
                 http_response_code(201);
                 return getArrayFromJSON($result);
@@ -35,6 +35,8 @@
 
         public static function getAll()
         {
+            //die(print_r($parameters));
+            //echo 'xx';
             $result = FilmRepository::getAll();
             if($result) {
                 http_response_code(201);
