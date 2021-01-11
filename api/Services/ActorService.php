@@ -1,9 +1,10 @@
 <?php
     class ActorService
     {
-        //добавление нового фильма
+        //добавление нового актера
         public static function add($data)
         {
+            $data = $_POST;
             $result = ActorRepository::add($data);
             if($result) {
                 http_response_code(201);
@@ -21,10 +22,12 @@
             return json_encode($answer);
         }
 
-        //редактирование информации о фильме по id 
+        //редактирование информации о актере по id 
         public static  function edit($id, $data)
         {
-            $result = ActorRepository::edit($data, $id);
+            $data = file_get_contents('php://input');
+            $data = json_decode($data, true);
+            $result = ActorRepository::edit($id, $data);
             if($result) {
                 http_response_code(202);
                 $answer = [
@@ -41,7 +44,7 @@
             return json_encode($answer);
         }
 
-        //удаление фильма по id
+        //удаление актерапо id
         public static  function delete($id)
         {
             $result = ActorRepository::delete($id);
