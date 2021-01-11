@@ -15,11 +15,13 @@
         }
         public static function callPostMethodService()
         {
-
+            $answer = ActorService::add($parameters);
+            return $answer;
         }
         public static function callPutMethodService()
         {
-
+            $answer = ActorService::edit($parameters[1]);
+            return $answer;
         }
         public static function callDeleteMethodService($parameters)
         {

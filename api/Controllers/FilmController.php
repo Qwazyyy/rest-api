@@ -27,22 +27,16 @@
         }
         public static function callPostMethodService($parameters)
         {
-            // if() {
-
-            // }
+            $answer = FilmService::add($parameters);
+            return $answer;
         }
         public static function callPutMethodService($parameters)
         {
-            // if() {
-
-            // }
+            $answer = FilmService::edit($parameters[1]);
         }
         public static function callDeleteMethodService($parameters)
         {
             $answer = FilmService::delete($parameters[1]);
             return $answer;
-            // if() {
-
-            // }
         }
     }
