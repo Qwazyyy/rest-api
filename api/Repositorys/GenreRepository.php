@@ -11,10 +11,9 @@
         public static function add($data)
         {
             $connection = MySQL::connection();
-            $name = $data['name'];
-            $query = $connection->query(
-                "INSERT INTO `films` (`id`, `name`) VALUES (NULL, '$name')"
-            );
+            $sql = "INSERT INTO `genres` (`id`, `name`) VALUES (NULL, :name)";
+            $query = $connection->prepare($sql);
+            $query->execute($data);
             if($query) {
                 return true;
             } else {
@@ -22,14 +21,13 @@
             }
         }
 
-        public static function edit($data, $id)
+        public static function edit($id, $data)
         {
             $connection = MySQL::connection();
-            $name = $data['name'];
-            $genreId = $data['genreId'];
-            $query = $connection->query(
-                "UPDATE `films` SET `name` = '$name' WHERE `id` = '$id'"
-            );
+            $id = (int)$id;
+            $sql = "UPDATE `genres` SET `name` = :name WHERE `id` = '$id'";
+            $query = $connection->prepare($sql);
+            $query->execute($data);
             if($query) {
                 return true;
             } else {

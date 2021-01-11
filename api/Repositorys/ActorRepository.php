@@ -11,11 +11,9 @@
         public static function add($data)
         {
             $connection = MySQL::connection();
-            $firstName = $data['firstName'];
-            $lastName = $data['lastName'];
-            $query = $connection->query(
-                "INSERT INTO `films` (`id`, `first_name`, `last_name`) VALUES (NULL, '$name', '$genreId')"
-            );
+            $sql = "INSERT INTO `actors` (`id`, `first_name`, `last_name`) VALUES (NULL, :firstName, :lastName)";
+            $query = $connection->prepare($sql);
+            $query->execute($data);
             if($query) {
                 return true;
             } else {
@@ -23,14 +21,14 @@
             }
         }
 
-        public static function edit($data, $id)
+        public static function edit($id, $data)
         {
+            
             $connection = MySQL::connection();
-            $firstName = $data['firstName'];
-            $lastName = $data['lastName'];
-            $query = $connection->query(
-                "UPDATE `actors` SET `first_name` = '$firstName', `last_name` = '$lastName' WHERE `id` = '$id'"
-            );
+            $id = (int)$id;
+            $sql = "UPDATE `actors` SET `first_name` = :firstName, `last_name` = :lastName WHERE `id` = '$id'";
+            $query = $connection->prepare($sql);
+            $query->execute($data);
             if($query) {
                 return true;
             } else {
@@ -41,9 +39,10 @@
         public static function delete($id)
         {
             $connection = MySQL::connection();
-            $query = $connection->query(
-                "DELETE FROM `actors` WHERE `id` = '$id'"
-            );
+            $id = (int)$id;
+            $sql = "DELETE FROM `actors` WHERE `id` = '$id'";
+            $query = $connection->prepare($sql);
+            $query->execute($data);
             if($query) {
                 return true;
             } else {
