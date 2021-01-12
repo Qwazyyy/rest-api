@@ -20,7 +20,7 @@
         }
         public static function callPutMethodService($parameters)
         {
-            $answer = ActorService::edit($parameters[1]);
+            $answer = ActorService::edit($parameters[1], $parameters);
             return $answer;
         }
         public static function callDeleteMethodService($parameters)

@@ -4,6 +4,7 @@
         //добавление нового фильма
         public static function add($data)
         {
+            $data = $_POST;
             $result = GenreRepository::add($data);
             if($result) {
                 http_response_code(201);
@@ -22,9 +23,11 @@
         }
 
         //редактирование информации о фильме по id 
-        public function edit($id, $data)
+        public static function edit($id, $data)
         {
-            $result = GenreRepository::edit($data, $id);
+            $data = file_get_contents('php://input');
+            $data = json_decode($data, true);
+            $result = GenreRepository::edit($id, $data);
             if($result) {
                 http_response_code(202);
                 $answer = [
@@ -42,7 +45,7 @@
         }
 
         //удаление фильма по id
-        public function delete($id)
+        public static function delete($id)
         {
             $result = GenreRepository::delete($id);
             if($result) {

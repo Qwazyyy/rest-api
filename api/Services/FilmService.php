@@ -1,6 +1,38 @@
 <?php
     class FilmService
     {
+        // public static function getAllSortByActorOrGenre($data)
+        // {
+        //     $result = FilmRepository::getAllSortByActorOrGenre($data);
+        //     if($result) {
+        //         http_response_code(201);
+        //         return getArrayFromJSON($result);
+        //     } else {
+        //         http_response_code(400);
+        //         $answer = [
+        //             "status" => false,
+        //             "text" => 'Ошибка: Фильмы не найден'
+        //         ];
+        //         return json_encode($answer);
+        //     }
+        // }
+
+        // public static function getAllFilterByActorAndGenre($data)
+        // {
+        //     $result = FilmRepository::getByActorGenreAndFilter($data);
+        //     if($result) {
+        //         http_response_code(201);
+        //         return getArrayFromJSON($result);
+        //     } else {
+        //         http_response_code(400);
+        //         $answer = [
+        //             "status" => false,
+        //             "text" => 'Ошибка: Фильмы не найден'
+        //         ];
+        //         return json_encode($answer);
+        //     }
+        // }
+
         public static function getByActorGenreAndFilter($data)
         {
             $result = FilmRepository::getByActorGenreAndFilter($data);
@@ -54,6 +86,7 @@
         //добавление нового фильма
         public static function add($data)
         {
+            $data = $_POST;
             $result = FilmRepository::add($data);
             if($result) {
                 http_response_code(201);
@@ -74,6 +107,8 @@
         //редактирование информации о фильме по id 
         public function edit($id, $data)
         {
+            $data = file_get_contents('php://input');
+            $data = json_decode($data, true);
             $result = FilmRepository::edit($data, $id);
             if($result) {
                 http_response_code(202);
