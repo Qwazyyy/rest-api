@@ -12,7 +12,7 @@
         }
     }
 
-    class Evgen 
+    class Evgeny 
     {
         public function consultWithAlex()
         {
@@ -34,16 +34,16 @@
 
     class Adapter implements Commit
     {
-        private $evgen;
+        private $evgeny;
 
-        public function __construct(Evgen $evgen)
+        public function __construct(Evgeny $evgeny)
         {
-            $this->evgen = $evgen;
+            $this->evgeny = $evgeny;
         }
 
         public function sendCommit()
         {
-            return $this->evgen->consultWithAlex();
+            return $this->evgeny->consultWithAlex();
         }
     }
 
@@ -60,9 +60,9 @@
     phpstormSendCommit($commitAlex);
 
 
-    $evgenCommit = new Evgen();
-    $commitEvgen = new Adapter($evgenCommit);
+    $evgenyCommit = new Evgeny();
+    $commitEvgeny = new Adapter($evgenyCommit);
     echo "\n";
-    phpstormSendCommit($commitEvgen);
+    phpstormSendCommit($commitEvgeny);
     
     
