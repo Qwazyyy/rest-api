@@ -4,7 +4,7 @@
         public function sendCommit();
     }
 
-    class Alex implements Commit 
+    class Alexey implements Commit 
     {
         public function sendCommit()
         {
@@ -14,7 +14,7 @@
 
     class Evgeny 
     {
-        public function consultWithAlex()
+        public function consultWithAlexey()
         {
             if ($this->checkCode()) {
                return $this->sendCommit();
@@ -55,7 +55,7 @@
 
 
 
-    $commitAlex = new Alex();
+    $commitAlex = new Alexey();
     
     phpstormSendCommit($commitAlex);
 
