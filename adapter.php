@@ -43,7 +43,7 @@
 
         public function sendCommit()
         {
-            return $this->evgeny->consultWithAlex();
+            return $this->evgeny->consultWithAlexey();
         }
     }
 
