@@ -55,13 +55,13 @@
 
 
 
-    $commitAlex = new Alexey();
+    $alexey = new Alexey();
     
     phpstormSendCommit($commitAlex);
 
 
-    $evgenyCommit = new Evgeny();
-    $commitEvgeny = new Adapter($evgenyCommit);
+    $evgeny = new Evgeny();
+    $commitEvgeny = new Adapter($evgeny);
     echo "\n";
     phpstormSendCommit($commitEvgeny);
     
